@@ -1,43 +1,38 @@
-'use client';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { queryClient } from "../api/query-client";
 
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+export interface User{
+    id:string;
+    email:string;
+    name:string
+}
 
-import { AUTH_COOKIE_KEYS, AUTH_STORAGE_KEYS } from '@/lib/constants/auth.constants';
-import { cookieStorage } from '@/lib/storages/cookie.storage';
-import type { TUser } from '@/lib/types';
+interface AuthState{
+    token:string | null;
+    user:User | null;
+    isAuthenticated:boolean;
+    login:(token:string, user:User)=>void;
+    logout:()=>void;
+}
 
-type TAuthStore = {
-    user: TUser | null;
-    isAuthenticated: boolean;
-    isHydrated: boolean;
-
-    setUser: (user: TUser | null) => void;
-    signOut: () => void;
-};
-
-export const useAuthStore = create<TAuthStore>()(
+export const useAuthStore=create<AuthState>()(
     persist(
-        (set) => ({
-            user: null,
-            isAuthenticated: false,
-            isHydrated: false,
-
-            setUser: (user) => set({ user, isAuthenticated: !!user }),
-            signOut: () => set({ user: null, isAuthenticated: false }),
+        (set)=>({
+            token:null,
+            user:null,
+            isAuthenticated:false,
+            login:(token,user)=>{
+                set({token,user,isAuthenticated:true})
+            },
+            logout:()=>{
+                queryClient.clear();
+                set({token:null,user:null,isAuthenticated:false});
+                window.location.href='/login';
+            },
         }),
         {
-            name: AUTH_STORAGE_KEYS.USER,
-            storage: createJSONStorage(() => localStorage),
-            partialize: (state) => ({ user: state.user, isAuthenticated: state.isAuthenticated }),
-            onRehydrateStorage: () => (state) => {
-                if (!state) return;
-                state.isHydrated = true;
-                if (state.isAuthenticated && !cookieStorage.has(AUTH_COOKIE_KEYS.ACCESS_TOKEN)) {
-                    state.user = null;
-                    state.isAuthenticated = false;
-                }
-            },
+            name:'syncmeds-auth-storage',
         }
     )
 );
