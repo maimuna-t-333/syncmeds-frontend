@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuthStore } from '@/lib/stores/auth.store';
+import { useAuthStore } from '@/lib/stores/auth-store';
 
 export const useAuth = () => ({
     user: useAuthStore((s) => s.user),

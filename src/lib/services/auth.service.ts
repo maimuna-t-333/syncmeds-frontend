@@ -13,7 +13,7 @@ import type {
     TSignInFormData,
     TSignUpFormData,
 } from '@/lib/schemas/auth.schemas';
-import { useAuthStore } from '@/lib/stores/auth.store';
+import { useAuthStore } from '@/lib/stores/auth-store';
 import type { TOtpVerifyResponse, TSignInResponse, TSignUpResponse, TUser } from '@/lib/types';
 import { clearAuthCookies, writeAuthCookies } from '@/lib/utils';
 
