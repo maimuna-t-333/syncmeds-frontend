@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Semantic tokens — inline so they resolve at runtime (enables dark mode) ── */
+@theme inline {
+    --color-background:             var(--background);
+    --color-foreground:             var(--foreground);
+    --color-card:                   var(--card);
+    --color-card-foreground:        var(--card-foreground);
+    --color-popover:                var(--popover);
+    --color-popover-foreground:     var(--popover-foreground);
+    --color-primary:                var(--primary);
+    --color-primary-foreground:     var(--primary-foreground);
+    --color-secondary:              var(--secondary);
+    --color-secondary-foreground:   var(--secondary-foreground);
+    --color-muted:                  var(--muted);
+    --color-muted-foreground:       var(--muted-foreground);
+    --color-accent:                 var(--accent);
+    --color-accent-foreground:      var(--accent-foreground);
+    --color-destructive:            var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border:                 var(--border);
+    --color-input:                  var(--input);
+    --color-ring:                   var(--ring);
+}
+
+/* ── Static palette & design tokens ── */
+@theme {
+    /* ── Primary palette (Figma: System/Primary) ── */
+    --color-primary-1:             #4045EF;
+    --color-primary-2:             #1216B3;
+    --color-primary-3:             #16173A;
+    --color-primary-4:             #989ADE;
+    --color-primary-overlay:       #7573FF;
+    --color-primary-container-1:   #E3E3FF;
+    --color-primary-container-2:   #C9CBFF;
+    --color-primary-container-3:   #EBEBFF;
+
+    /* ── Neutral palette (Figma: System/Neutral) ── */
+    --color-neutral-bg-1:          #FFFFFF;
+    --color-neutral-bg-2:          #F1F6FF;
+    --color-neutral-surface-1:     #FFFFFF;
+    --color-neutral-surface-2:     #F1F6FF;
+    --color-neutral-surface-3:     #E8ECF3;
+    --color-neutral-divider:       #D3E0FE;
+    --color-on-surface-1:          #2E3139;
+    --color-on-surface-2:          #425583;
+    --color-on-surface-3:          #899CC9;
+
+    /* ── Alert (Figma: System/Alert) ── */
+    --color-success:               #17A31A;
+    --color-error:                 #D91B1B;
+
+    /* ── Auth hero panel ── */
+    --color-auth-hero:             #16173A;
+    --color-auth-hero-ring:        #1216B3;
+    --color-auth-hero-card:        #4045EF;
+
+    /* ── Legacy aliases (backward compat) ── */
+    --color-base-20:               #E8ECF3;
+    --color-base-40:               #899CC9;
+    --color-base-60:               #425583;
+    --color-base-80:               #2E3139;
+    --color-base-black-100:        #16173A;
+    --color-error-20:              #FFE5E5;
+
+    /* ── Radius ── */
+    --radius-sm:   0.375rem;   /* 6px  */
+    --radius-md:   0.5rem;     /* 8px  */
+    --radius-lg:   0.75rem;    /* 12px */
+    --radius-xl:   1rem;       /* 16px */
+    --radius-2xl:  1.5rem;     /* 24px */
+    --radius-card: 0.875rem;   /* 14px */
+    --radius-pill: 9999px;
+
+    /* ── Fonts ── */
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", monospace;
+
+    /* ── Type scale (Figma: System/* font variables) ── */
+    --text-headline:   4rem / 1;         /* 64px — bold display  */
+    --text-title-l:    2rem / 1;         /* 32px — title large   */
+    --text-title-m:    1.5rem / 1;       /* 24px — title medium  */
+    --text-body-l:     1rem / 1.5rem;    /* 16px / 24px          */
+    --text-body-m:     0.875rem / 1.25;  /* 14px                 */
+    --text-body-s:     0.75rem / 1;      /* 12px — body small    */
+    --text-body-xs:    0.75rem / 1;      /* 12px — label medium  */
+    --text-label-s:    0.625rem / 1;     /* 10px — label small   */
+
+    /* ── Backward-compat heading aliases ── */
+    --text-heading-1:  2rem / 1;
+    --text-heading-2:  1.5rem / 1;
+    --text-heading-3:  1.125rem / 1.75rem;
+
+    /* ── Shadows ── */
+    --shadow-xs:   0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm:   0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md:   0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:   0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl:   0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-card: 0 0 0 1px rgb(0 0 0 / 0.06), 0 4px 16px -4px rgb(0 0 0 / 0.08);
+}
+
+/* ── Light mode ── */
+:root {
+    color-scheme: light;
+
+    --background:             #FFFFFF;
+    --foreground:             #2E3139;
+    --card:                   #FFFFFF;
+    --card-foreground:        #2E3139;
+    --popover:                #FFFFFF;
+    --popover-foreground:     #2E3139;
+    --primary:                #4045EF;
+    --primary-foreground:     #FFFFFF;
+    --secondary:              #F1F6FF;
+    --secondary-foreground:   #425583;
+    --muted:                  #E8ECF3;
+    --muted-foreground:       #899CC9;
+    --accent:                 #EBEBFF;
+    --accent-foreground:      #4045EF;
+    --destructive:            #D91B1B;
+    --destructive-foreground: #FFFFFF;
+    --border:                 #D3E0FE;
+    --input:                  #D3E0FE;
+    --ring:                   #4045EF;
+}
+
+/* ── Dark mode ── */
+.dark {
+    color-scheme: dark;
+
+    --background:             #16173A;
+    --foreground:             #F1F6FF;
+    --card:                   #1E1F4A;
+    --card-foreground:        #F1F6FF;
+    --popover:                #1E1F4A;
+    --popover-foreground:     #F1F6FF;
+    --primary:                #7573FF;
+    --primary-foreground:     #FFFFFF;
+    --secondary:              #1E1F4A;
+    --secondary-foreground:   #C9CBFF;
+    --muted:                  #1A1B3E;
+    --muted-foreground:       #989ADE;
+    --accent:                 #2A2B5C;
+    --accent-foreground:      #C9CBFF;
+    --destructive:            #F87171;
+    --destructive-foreground: #FFFFFF;
+    --border:                 #2E2F6E;
+    --input:                  #2E2F6E;
+    --ring:                   #7573FF;
+}
+
+/* ── Base ── */
+@layer base {
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+        border-color: var(--border);
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-sans);
+        font-feature-settings: "rlig" 1, "calt" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        min-height: 100dvh;
+    }
+
+    ::selection {
+        background-color: rgb(64 69 239 / 0.12);
+    }
+}
