@@ -11,17 +11,14 @@ export const metadata: Metadata = {
         default: 'SyncMeds Admin',
         template: '%s | SyncMeds Admin',
     },
-    description:
-        'A pharmacy management system built with Next.js and TypeScript',
+    description: 'A pharmacy management system built with Next.js and TypeScript',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={inter.variable} suppressHydrationWarning>
             <body className={inter.className}>
-                <Providers>
-                    {children}
-                </Providers>
+                <Providers>{children}</Providers>
             </body>
         </html>
     );
