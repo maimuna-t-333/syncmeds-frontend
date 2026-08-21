@@ -1,35 +1,33 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-import { AUTH_COOKIE_KEYS } from '@/lib/constants/auth.constants';
-import { AUTH_ROUTES, PROTECTED_ROUTES } from '@/lib/constants/routes.constants';
-import { isJwtExpired } from '@/lib/utils';
+const protectedRoutes = ['/dashboard', '/customers', '/products', '/inventory', '/sales', '/settings', '/users'];
+const publicRoutes = ['/login', '/sign-in'];
 
 export function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
-    const token = request.cookies.get(AUTH_COOKIE_KEYS.ACCESS_TOKEN)?.value;
-    const isAuthed = !!token && !isJwtExpired(token);
+    const token = request.cookies.get('syncmeds-auth-token')?.value;
+    
+    const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
+    const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
 
-    if (PROTECTED_ROUTES.some((p) => pathname.startsWith(p)) && !isAuthed) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/sign-in';
-        const res = NextResponse.redirect(url);
-        if (token) {
-            res.cookies.delete(AUTH_COOKIE_KEYS.ACCESS_TOKEN);
-            res.cookies.delete(AUTH_COOKIE_KEYS.REFRESH_TOKEN);
-        }
-        return res;
+    // Protect dashboard routes
+    if (isProtectedRoute && !token) {
+        const loginUrl = new URL('/login', request.url);
+        loginUrl.searchParams.set('expired', 'true');
+        return NextResponse.redirect(loginUrl);
     }
 
-    if (AUTH_ROUTES.some((p) => pathname.startsWith(p)) && isAuthed) {
-        const url = request.nextUrl.clone();
-        url.pathname = '/';
-        return NextResponse.redirect(url);
+    // Redirect logged-in users away from login page
+    if (isPublicRoute && token) {
+        return NextResponse.redirect(new URL('/dashboard', request.url));
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+    matcher: [
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)'
+    ],
 };
