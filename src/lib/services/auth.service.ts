@@ -14,7 +14,7 @@ import type {
     TSignUpFormData,
 } from '@/lib/schemas/auth.schemas';
 import { useAuthStore } from '@/lib/stores/auth-store';
-import type { TOtpVerifyResponse, TSignInResponse, TSignUpResponse, TUser } from '@/lib/types';
+import type { TOtpVerifyResponse, TSignInResponse, TUser } from '@/lib/types';
 import { clearAuthCookies, writeAuthCookies } from '@/lib/utils';
 
 export const useSignIn = () => {
@@ -76,7 +76,7 @@ export const useForgotPassword = () => {
             api.post(ENDPOINTS.auth.forgotPassword, payload),
         onSuccess: ({ message }) => {
             toast.success(message);
-            router.replace('/sign-in');
+            router.replace('/login');
         },
         onError: (error) => toast.error(error.message),
     });
@@ -89,7 +89,7 @@ export const useResetPassword = () => {
             api.post(ENDPOINTS.auth.resetPassword, payload),
         onSuccess: ({ message }) => {
             toast.success(message);
-            router.replace('/sign-in');
+            router.replace('/login');
         },
         onError: (error) => toast.error(error.message),
     });
@@ -101,6 +101,6 @@ export const useSignOut = () => {
     return () => {
         clearAuthCookies();
         signOut();
-        router.replace('/sign-in');
+        router.replace('/login');
     };
 };

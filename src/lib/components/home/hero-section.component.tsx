@@ -115,7 +115,7 @@ export const HeroSection = () => {
                                 Use this template
                             </a>
                             <Link
-                                href="/sign-in"
+                                href="/login"
                                 className="flex items-center gap-2 rounded-lg border border-border bg-white px-5 py-2.5 text-body-m font-medium text-foreground shadow-xs transition-colors hover:bg-secondary"
                             >
                                 <KeyRound className="size-4" />
@@ -178,7 +178,7 @@ export const HeroSection = () => {
                                 <span className="size-2.5 rounded-full bg-yellow-400/80" />
                                 <span className="size-2.5 rounded-full bg-green-400/80" />
                                 <span className="ml-2 font-mono text-body-xs text-muted-foreground">
-                                    localhost:3000/sign-in
+                                    localhost:3000/login
                                 </span>
                             </div>
 

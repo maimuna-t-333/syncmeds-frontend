@@ -10,7 +10,7 @@ const protectedRoutes = [
     '/settings',
     '/users',
 ];
-const publicRoutes = ['/login', '/sign-in'];
+const publicRoutes = ['/login'];
 
 export function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;

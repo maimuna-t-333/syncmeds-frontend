@@ -51,7 +51,7 @@ export const Home = () => {
                             <span className="hidden sm:inline">GitHub</span>
                         </a>
                         <Link
-                            href="/sign-in"
+                            href="/login"
                             className="rounded-lg bg-primary px-4 py-1.5 text-body-m font-medium text-primary-foreground transition-opacity hover:opacity-90"
                         >
                             Live preview
@@ -201,7 +201,7 @@ export const Home = () => {
                             — so the responsibility of any file is obvious at a glance.
                         </p>
                         <Link
-                            href="/sign-in"
+                            href="/login"
                             className="inline-flex items-center gap-1.5 text-body-m font-medium text-primary transition-opacity hover:opacity-70"
                         >
                             Explore the auth flow
@@ -256,7 +256,7 @@ export const Home = () => {
                                 <br className="sm:hidden" /> ready to use
                             </h2>
                             <Link
-                                href="/sign-in"
+                                href="/login"
                                 className="hidden shrink-0 items-center gap-1.5 text-body-m font-medium text-primary transition-opacity hover:opacity-70 sm:flex"
                             >
                                 Preview all pages

@@ -169,7 +169,7 @@ export const AppSidebar = () => {
                             <AlertDialogHeader>
                                 <AlertDialogTitle>Sign out?</AlertDialogTitle>
                                 <AlertDialogDescription>
-                                    You'll be redirected to the sign-in page.
+                                    You'll be redirected to the login page.
                                 </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>

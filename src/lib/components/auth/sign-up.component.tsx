@@ -79,7 +79,7 @@ export const SignUp = () => {
 
                 <p className="text-center text-body-m text-secondary-foreground">
                     Already have an account?{' '}
-                    <Link href="/sign-in" className="font-medium text-primary">
+                    <Link href="/login" className="font-medium text-primary">
                         Sign in
                     </Link>
                 </p>

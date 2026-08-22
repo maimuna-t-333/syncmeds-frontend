@@ -1,5 +1,5 @@
 export const AUTH_PAGES = [
-    { label: 'Sign In', href: '/sign-in', desc: 'Email + password, remember me, Google OAuth' },
+    { label: 'Sign In', href: '/login', desc: 'Email + password, remember me, Google OAuth' },
     { label: 'Sign Up', href: '/sign-up', desc: 'Name, email, password — Zod validated' },
     {
         label: 'Forgot Password',

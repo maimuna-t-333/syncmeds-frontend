@@ -54,7 +54,7 @@ Never use relative paths across layer boundaries.
 src/
 ├── app/
 │   ├── (auth)/
-│   │   ├── sign-in/page.tsx
+│   │   ├── login/page.tsx
 │   │   ├── sign-up/page.tsx
 │   │   ├── otp-verification/page.tsx
 │   │   ├── forgot-password/page.tsx
@@ -85,7 +85,7 @@ Layer rule: **never mix layers**. A service never imports a component. A store n
 | Layer | Pattern | Example |
 |---|---|---|
 | Primitive UI | `kebab.ui.tsx` | `button.ui.tsx` |
-| Feature component | `kebab-name.component.tsx` | `sign-in.component.tsx` |
+| Feature component | `kebab-name.component.tsx` | `login.component.tsx` |
 | Hook | `use-kebab-name.hook.ts` | `use-auth.hook.ts` |
 | Service | `feature.service.ts` | `auth.service.ts` |
 | Store | `feature.store.ts` | `auth.store.ts` |

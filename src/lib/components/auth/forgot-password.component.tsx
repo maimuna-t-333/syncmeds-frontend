@@ -49,7 +49,7 @@ export const ForgotPassword = () => {
                 <div className="flex flex-col gap-4">
                     <Button type="submit" label="Send Reset Link" loading={isPending} />
                     <p className="text-center text-body-m text-secondary-foreground">
-                        <Link href="/sign-in" className="font-medium text-primary">
+                        <Link href="/login" className="font-medium text-primary">
                             Back to Sign In
                         </Link>
                     </p>
