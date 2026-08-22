@@ -5,10 +5,12 @@ import { queryClient } from '../api/query-client';
 function setCookies(name: string, value: string, days: number = 1) {
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API isn't universally supported yet
     document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
 }
 
 function deleteCookie(name: string) {
+    // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API isn't universally supported yet
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
 }
 

@@ -45,6 +45,7 @@ export const Avatar = ({ name, src, size = 'md', className, ...rest }: AvatarPro
     if (src) {
         return (
             <div {...rest} className={clsx(base, className)}>
+                {/* biome-ignore lint/performance/noImgElement: avatar sources are external/dynamic URLs */}
                 <img src={src} alt={name} className="size-full object-cover" />
             </div>
         );
