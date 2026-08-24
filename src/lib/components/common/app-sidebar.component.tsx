@@ -13,7 +13,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { useAuth } from '@/lib/hooks';
+import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSignOut } from '@/lib/services/auth.service';
 import {
     AlertDialog,
@@ -39,7 +39,7 @@ const SECONDARY_NAV = [{ href: '/profile', label: 'Settings', icon: Settings }] 
 
 export const AppSidebar = () => {
     const pathname = usePathname();
-    const { user } = useAuth();
+    const { user } = useAuthStore();
     const signOut = useSignOut();
 
     const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);

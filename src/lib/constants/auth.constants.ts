@@ -3,7 +3,7 @@ export const AUTH_STORAGE_KEYS = {
 } as const;
 
 export const AUTH_COOKIE_KEYS = {
-    ACCESS_TOKEN: 'access_token',
+    ACCESS_TOKEN: 'syncmeds-auth-token',
     REFRESH_TOKEN: 'refresh_token',
 } as const;
 

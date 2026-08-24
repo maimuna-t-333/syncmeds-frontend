@@ -10,8 +10,10 @@ function setCookies(name: string, value: string, days: number = 1) {
 }
 
 function deleteCookie(name: string) {
+    if(typeof document !== 'undefined'){
     // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API isn't universally supported yet
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+}
 }
 
 export interface User {

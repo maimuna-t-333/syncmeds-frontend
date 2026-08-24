@@ -97,10 +97,10 @@ export const useResetPassword = () => {
 
 export const useSignOut = () => {
     const router = useRouter();
-    const { signOut } = useAuthStore();
+    const { logout } = useAuthStore();
     return () => {
         clearAuthCookies();
-        signOut();
+        logout();
         router.replace('/login');
     };
 };
