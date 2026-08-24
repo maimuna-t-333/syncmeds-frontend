@@ -12,7 +12,7 @@ export interface ApiResponse<T = unknown> {
 }
 
 async function fetchWrapper<T = unknown>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const { token,logout } = useAuthStore.getState();
+    const { token, logout } = useAuthStore.getState();
     const headers: HeadersInit = {
         'Content-Type': 'application/json',
         ...(token ? { Authorization: `Bearer ${token}` } : {}),

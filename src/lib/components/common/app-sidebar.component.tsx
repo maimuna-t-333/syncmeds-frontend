@@ -12,9 +12,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import { useAuthStore } from '@/lib/stores/auth-store';
 import { useSignOut } from '@/lib/services/auth.service';
+import { useAuthStore } from '@/lib/stores/auth-store';
 import {
     AlertDialog,
     AlertDialogAction,
