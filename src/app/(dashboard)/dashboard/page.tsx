@@ -1,12 +1,12 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { Loader2, Summary } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import { RecentSales } from '@/components/dashboard/recent-sales';
+import { SalesChart } from '@/components/dashboard/sales-charts';
 import { api } from '@/lib/config';
 import type { TApiResponse } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/lib/ui/card';
-import { SalesChart } from '@/components/dashboard/sales-charts';
-import { RecentSales } from '@/components/dashboard/recent-sales';
 
 interface AnalyticsSummary {
     todaySales: number;
@@ -92,13 +92,13 @@ export default function DashboardPage() {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-7">
-        <div className="lg:col-span-4">
-          <SalesChart />
-        </div>
-        <div className="lg:col-span-3">
-          <RecentSales />
-        </div>
-      </div>
+                <div className="lg:col-span-4">
+                    <SalesChart />
+                </div>
+                <div className="lg:col-span-3">
+                    <RecentSales />
+                </div>
+            </div>
         </div>
     );
 }
